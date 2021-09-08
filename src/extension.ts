@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { evaluate, parser } from 'mathjs';
+import { parser } from 'mathjs';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -25,11 +25,20 @@ export function activate(context: vscode.ExtensionContext) {
 
       if (input) {
         try {
-          const evaluated = evaluate(input);
+          const evaluated = myParser.evaluate(input);
+
+          const config = vscode.workspace.getConfiguration('calculator');
+          const saveToClipboard = config.get('saveToClipboard');
+
           vscode.window.showInformationMessage(
-            `Result of expression: ${evaluated}`
+            `Result of expression: ${evaluated}${
+              saveToClipboard ? ' (saved to clipboard)' : ''
+            }`
           );
-          await vscode.env.clipboard.writeText(String(evaluated));
+
+          if (saveToClipboard) {
+            await vscode.env.clipboard.writeText(String(evaluated));
+          }
         } catch {
           vscode.window.showErrorMessage(
             `ERROR: unable to evaluate '${input}'!`
