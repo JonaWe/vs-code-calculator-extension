@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { evaluate } from 'mathjs';
+import { evaluate, parser } from 'mathjs';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -7,29 +7,35 @@ export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
+  const myParser = parser();
+
   let disposable = vscode.commands.registerCommand(
     'calculator.evaluate',
-    () => {
-      vscode.window
-        .showInputBox({
-          title: 'Calculator',
-          placeHolder: 'type an expression to evaluate',
-          prompt: 'Evaluate expression',
-        })
-        .then((input) => {
-          if (input) {
-            try {
-              const evaluated = evaluate(input);
-              vscode.window.showInformationMessage(
-                `Result of expression: ${evaluated}`
-              );
-            } catch {
-              vscode.window.showErrorMessage(
-                `ERROR: unable to evaluate '${input}'!`
-              );
-            }
-          }
-        });
+    async () => {
+      const title = 'Calculator';
+      const placeHolder =
+        'type an expression to evaluate (e.g. 42*3 or 12 cm in feet)';
+      const prompt = 'Evaluate expression';
+
+      const input = await vscode.window.showInputBox({
+        title,
+        placeHolder,
+        prompt,
+      });
+
+      if (input) {
+        try {
+          const evaluated = evaluate(input);
+          vscode.window.showInformationMessage(
+            `Result of expression: ${evaluated}`
+          );
+          await vscode.env.clipboard.writeText(String(evaluated));
+        } catch {
+          vscode.window.showErrorMessage(
+            `ERROR: unable to evaluate '${input}'!`
+          );
+        }
+      }
     }
   );
 
