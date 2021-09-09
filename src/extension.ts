@@ -9,7 +9,12 @@ export function activate(context: vscode.ExtensionContext) {
   // The commandId parameter must match the command field in package.json
   const myParser = parser();
 
-  let disposable = vscode.commands.registerCommand(
+  let resetCommand = vscode.commands.registerCommand('calculator.reset', () => {
+    myParser.clear();
+    vscode.window.showInformationMessage('Calculator cleared!');
+  });
+
+  let evaluateCommand = vscode.commands.registerCommand(
     'calculator.evaluate',
     async () => {
       const title = 'Calculator';
@@ -48,7 +53,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  context.subscriptions.push(disposable);
+  context.subscriptions.push(evaluateCommand, resetCommand);
 }
 
 // this method is called when your extension is deactivated

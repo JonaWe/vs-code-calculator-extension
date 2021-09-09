@@ -10,7 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:calculator.evaluate"
+    "onCommand:calculator.evaluate",
+    "onCommand:calculator.reset"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -18,6 +19,11 @@
       {
         "command": "calculator.evaluate",
         "title": "Evaluate",
+        "category": "Calculator"
+      },
+      {
+        "command": "calculator.reset",
+        "title": "Reset",
         "category": "Calculator"
       }
     ],
@@ -36,6 +42,12 @@
         "command": "calculator.evaluate",
         "key": "ctrl+alt+e",
         "mac": "cmd+alt+e",
+        "when": ""
+      },
+      {
+        "command": "calculator.reset",
+        "key": "ctrl+alt+c",
+        "mac": "cmd+alt+c",
         "when": ""
       }
     ]
