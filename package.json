@@ -17,7 +17,8 @@
     "commands": [
       {
         "command": "calculator.evaluate",
-        "title": "Evaluate"
+        "title": "Evaluate",
+        "category": "Calculator"
       }
     ],
     "configuration": {
@@ -29,7 +30,15 @@
           "description": "Specifies whether the result of a calculation is saved to the clipboard."
         }
       }
-    }
+    },
+    "keybindings": [
+      {
+        "command": "calculator.evaluate",
+        "key": "ctrl+alt+e",
+        "mac": "cmd+alt+e",
+        "when": ""
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
