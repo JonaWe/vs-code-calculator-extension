@@ -1,8 +1,9 @@
 {
   "name": "calculator",
-  "displayName": "Calculator",
+  "displayName": "Simple Calculator",
   "description": "a simple calculator inside vs code",
-  "version": "0.0.1",
+  "publisher": "JonaWe",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.60.0"
   },
@@ -52,8 +53,19 @@
       }
     ]
   },
+  "homepage": "https://github.com/JonaWe/vs-code-calculator-extension#readme",
+  "repository": {
+    "url": "https://github.com/JonaWe/vs-code-calculator-extension/"
+  },
+  "bugs": {
+    "url": "https://github.com/JonaWe/vs-code-calculator-extension/issues"
+  },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "test-compile": "tsc -p ./",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
@@ -67,6 +79,7 @@
     "@types/vscode": "^1.60.0",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
+    "esbuild": "^0.12.26",
     "eslint": "^7.27.0",
     "glob": "^7.1.7",
     "mocha": "^8.4.0",
