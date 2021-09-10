@@ -3,7 +3,7 @@
   "displayName": "Simple Calculator",
   "description": "a simple calculator inside vs code",
   "publisher": "JonaWe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "engines": {
     "vscode": "^1.60.0"
   },
