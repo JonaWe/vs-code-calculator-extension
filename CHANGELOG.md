@@ -6,6 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.2] - 2021-09-10
+
+### Changed
+
+- Uses `webpack` instead of `esbuild` for bundling now
+
 ## [1.0.1] - 2021-09-10
 
 ### Fixed
