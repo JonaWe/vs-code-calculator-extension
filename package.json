@@ -14,7 +14,7 @@
     "onCommand:calculator.evaluate",
     "onCommand:calculator.reset"
   ],
-  "main": "./out/main.js",
+  "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
@@ -61,11 +61,10 @@
     "url": "https://github.com/JonaWe/vs-code-calculator-extension/issues"
   },
   "scripts": {
-    "vscode:prepublish": "npm run esbuild-base -- --minify",
-    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
-    "esbuild": "npm run esbuild-base -- --sourcemap",
-    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
-    "test-compile": "tsc -p ./",
+    "vscode:prepublish": "webpack --mode production",
+    "webpack": "webpack --mode development",
+    "webpack-production": "webpack --mode production",
+    "webpack-dev": "webpack --mode development --watch",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
@@ -79,12 +78,14 @@
     "@types/vscode": "^1.60.0",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
-    "esbuild": "^0.12.26",
     "eslint": "^7.27.0",
     "glob": "^7.1.7",
     "mocha": "^8.4.0",
+    "ts-loader": "^9.2.5",
     "typescript": "^4.3.2",
-    "vscode-test": "^1.5.2"
+    "vscode-test": "^1.5.2",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
   },
   "dependencies": {
     "mathjs": "^9.4.4"
