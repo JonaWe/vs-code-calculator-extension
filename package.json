@@ -35,6 +35,11 @@
           "type": "boolean",
           "default": true,
           "description": "Specifies whether the result of a calculation is saved to the clipboard."
+        },
+        "calculator.disableResultNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable notifications for results."
         }
       }
     },

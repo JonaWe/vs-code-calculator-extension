@@ -24,12 +24,11 @@ This extension evaluates mathematic expressions using the [mathjs](https://www.n
 ## Extension Settings
 
 * `calculator.saveToClipboard`: enable/disable saving result of calculation to clipboard
+* `calculator.disableResultNotifications`: enable/disable showing a notification with the result
 
-## Release Notes
+## Known Issues
 
-### 1.0.0
-
-Initial release of Simple Calculator
+No known issues yet :)
 
 -----------------------------------------------------------------------------------------------------------
 
